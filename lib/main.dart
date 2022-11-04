@@ -11,6 +11,8 @@ User userSession = User.fromJson(GetStorage().read('user') ?? {});
 void main() async {
   await GetStorage.init();
 
+  print("First commit ");
+
   runApp(const MyApp());
 }
 
