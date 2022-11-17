@@ -17,8 +17,8 @@ class RolesPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.17),
-        
+        margin: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height * 0.17),
         child: ListView(
             children: rolesCon.user.roles != null
                 ? rolesCon.user.roles!.map((Rol rol) {
@@ -30,26 +30,29 @@ class RolesPage extends StatelessWidget {
   }
 
   Widget _cardRol(Rol rol) {
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.only(bottom: 15),
-          height: 100,
-          child: FadeInImage(
-            image: NetworkImage(rol.image!),
-            fit: BoxFit.contain,
-            fadeInDuration: Duration(milliseconds: 50),
-            placeholder: AssetImage('assets/img/delivery.png'),
+    return GestureDetector(
+      onTap: () => rolesCon.goToPageRol(rol),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(bottom: 15),
+            height: 100,
+            child: FadeInImage(
+              image: NetworkImage(rol.image!),
+              fit: BoxFit.contain,
+              fadeInDuration: Duration(milliseconds: 50),
+              placeholder: AssetImage('assets/img/delivery.png'),
+            ),
           ),
-        ),
-        Container(
-          margin: EdgeInsets.only(bottom: 15),
-          child: Text(rol.name ?? '',style: TextStyle(
-            fontSize: 16,
-            color: Colors.black
-          ),),
-        )
-      ],
+          Container(
+            margin: EdgeInsets.only(bottom: 15),
+            child: Text(
+              rol.name ?? '',
+              style: TextStyle(fontSize: 16, color: Colors.black),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

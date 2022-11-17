@@ -1,9 +1,11 @@
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uber_demo_udemy/src/pages/register/register_controller.dart';
+import 'package:uber_demo_udemy/src/pages/client/profile/update/client_profile_update_controller.dart';
 
-class RegisterPage extends StatelessWidget {
-  RegisterController registerCon = Get.put(RegisterController());
+class ClientProfileUpdatePage extends StatelessWidget {
+  ClientProfileUpdatecontroller con = Get.put(ClientProfileUpdatecontroller());
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class RegisterPage extends StatelessWidget {
 
   Widget _boxForm(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.65,
+      height: MediaQuery.of(context).size.height * 0.43,
       margin: EdgeInsets.only(
           top: MediaQuery.of(context).size.height * 0.32, left: 10, right: 10),
       decoration: const BoxDecoration(
@@ -41,13 +43,10 @@ class RegisterPage extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(children: [
           _texYourInfo(),
-          _textGFieldEmail(),
           _textFieldName(),
           _textFieldLastName(),
           _textFieldPhone(),
-          _textFieldPassword(),
-          _textFieldConfirmPassword(),
-          _buttomRegister(context)
+          _buttomUpdate(context)
         ]),
       ),
     );
@@ -69,25 +68,14 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Widget _textGFieldEmail() {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 40),
-      child: TextField(
-          controller: registerCon.emailController,
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-              hintText: 'Correo electronico', prefixIcon: Icon(Icons.email))),
-    );
-  }
-
   Widget _textFieldName() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
-          controller: registerCon.nameController,
+          controller: con.nameController,
           keyboardType: TextInputType.text,
-          decoration: InputDecoration(
-              hintText: 'Nombre', prefixIcon: Icon(Icons.person))),
+          decoration:
+              InputDecoration(hintText: '', prefixIcon: Icon(Icons.person))),
     );
   }
 
@@ -95,10 +83,10 @@ class RegisterPage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
-          controller: registerCon.lastNameController,
+          controller: con.lastNameController,
           keyboardType: TextInputType.text,
           decoration: InputDecoration(
-              hintText: 'Apellido', prefixIcon: Icon(Icons.person_outline))),
+              hintText: '', prefixIcon: Icon(Icons.person_outline))),
     );
   }
 
@@ -106,52 +94,24 @@ class RegisterPage extends StatelessWidget {
     return Container(
         margin: EdgeInsets.symmetric(horizontal: 40),
         child: TextField(
-            controller: registerCon.phoneController,
+            controller: con.phoneController,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
-              hintText: 'Telefono',
+              hintText: '',
               prefixIcon: Icon(Icons.phone),
             )));
   }
 
-  Widget _textFieldPassword() {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 40),
-      child: TextField(
-          controller: registerCon.passwordController,
-          keyboardType: TextInputType.text,
-          obscureText: true,
-          decoration: InputDecoration(
-            hintText: 'Contraseña',
-            prefixIcon: Icon(Icons.lock),
-          )),
-    );
-  }
-
-  Widget _textFieldConfirmPassword() {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 40),
-      child: TextField(
-          controller: registerCon.confirmPasswordController,
-          keyboardType: TextInputType.text,
-          obscureText: true,
-          decoration: InputDecoration(
-            hintText: 'Confirmar Contraseña',
-            prefixIcon: Icon(Icons.lock),
-          )),
-    );
-  }
-
-  Widget _buttomRegister(BuildContext context) {
+  Widget _buttomUpdate(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+      margin: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
       child: ElevatedButton(
-          onPressed: () => registerCon.register(context),
+          onPressed: () => {},
           style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 15)),
           child: Text(
-            "Registrarse",
+            "Actualizar",
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           )),
     );
@@ -163,12 +123,15 @@ class RegisterPage extends StatelessWidget {
         margin: EdgeInsets.only(top: 30),
         alignment: Alignment.topCenter,
         child: GestureDetector(
-            onTap: () => registerCon.showAlertDialog(context),
-            child: GetBuilder<RegisterController>(
+            onTap: () => con.showAlertDialog(context),
+            child: GetBuilder<ClientProfileUpdatecontroller>(
               builder: (value) => CircleAvatar(
-                backgroundImage: registerCon.imageFile != null
-                    ? FileImage(registerCon.imageFile!)
-                    : AssetImage("assets/img/delivery.png") as ImageProvider,
+                backgroundImage: con.imageFile != null
+                    ? FileImage(con.imageFile!)
+                    : con.user.image != null
+                        ? NetworkImage(con.user.image!)
+                        : AssetImage("assets/img/delivery.png")
+                            as ImageProvider,
                 radius: 80,
                 backgroundColor: Colors.white,
               ),

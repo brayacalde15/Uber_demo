@@ -53,8 +53,7 @@ class RegisterController extends GetxController {
       Stream stream = await usersProvider.createUserWithImage(user, imageFile!);
 
       stream.listen((res) {
-
-         progressDialog.close();
+        progressDialog.close();
 
         ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
 
@@ -70,7 +69,7 @@ class RegisterController extends GetxController {
   }
 
   void goToHomePage() {
-    Get.offNamedUntil('/home', (route) => false);
+    Get.offNamedUntil('/client/products/list', (route) => false);
   }
 
   bool isValidForm(String email, String name, String lastName, String phone,

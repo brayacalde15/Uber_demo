@@ -1,9 +1,8 @@
-import 'dart:ui';
-
-import 'package:flutter/gestures.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uber_demo_udemy/src/pages/home/home_controller.dart';
+
+import 'home_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomeController con = Get.put(HomeController());

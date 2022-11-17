@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:uber_demo_udemy/main.dart';
 import 'package:uber_demo_udemy/src/models/response_api.dart';
+import 'package:uber_demo_udemy/src/models/user.dart';
 import 'package:uber_demo_udemy/src/provider/users_provider.dart';
 
 class LoginController extends GetxController {
@@ -28,11 +30,20 @@ class LoginController extends GetxController {
       if (responseApi.success == true) {
         GetStorage()
             .write('user', responseApi.data); //Datos del usuario en Sesion
-        goToRolesPage();
+
+        if (userSession.roles!.length > 1) {
+          goToRolesPage();
+        } else {
+          goToClientProductPage();
+        }
       } else {
         Get.snackbar('Login fallido', responseApi.message ?? '');
       }
     }
+  }
+
+  void goToClientProductPage() {
+    Get.offNamedUntil('/client/products/list', (route) => false);
   }
 
   void goToHomePage() {

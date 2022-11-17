@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:uber_demo_udemy/src/models/user.dart';
+import 'package:uber_demo_udemy/src/pages/client/products/list/client_products_list_page.dart';
+import 'package:uber_demo_udemy/src/pages/client/profile/info/client_profile_info_page.dart';
+import 'package:uber_demo_udemy/src/pages/client/profile/update/client_profile_update_page.dart';
+import 'package:uber_demo_udemy/src/pages/delivery/orders/list/delivery_orders_list_page.dart';
 import 'package:uber_demo_udemy/src/pages/home/home_pages.dart';
 import 'package:uber_demo_udemy/src/pages/login/login_pages.dart';
 import 'package:uber_demo_udemy/src/pages/register/register_page.dart';
+import 'package:uber_demo_udemy/src/pages/restaurant/orders/list/restaurant_orders_list_page.dart';
 import 'package:uber_demo_udemy/src/pages/roles/roles_pages.dart';
 
 User userSession = User.fromJson(GetStorage().read('user') ?? {});
@@ -32,13 +37,30 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       title: "Delivery Udemy ",
       debugShowCheckedModeBanner: false,
-      initialRoute:userSession.id != null ?'/home':'/',
+      initialRoute: userSession.id != null
+          ? userSession.roles!.length > 1
+              ? '/roles'
+              : '/client/products/list'
+          : '/',
       getPages: [
         GetPage(name: '/', page: () => LoginPage()),
         GetPage(name: '/register', page: () => RegisterPage()),
         GetPage(name: '/home', page: () => HomePage()),
         GetPage(name: '/roles', page: () => RolesPage()),
-
+        GetPage(
+            name: '/restaurant/orders/list',
+            page: () => RestaurantOrdersListPage()),
+        GetPage(
+            name: '/delivery/orders/list',
+            page: () => DeliveryOrdersListPage()),
+        GetPage(
+            name: '/client/products/list',
+            page: () => ClientProductsListPage()),
+        GetPage(
+            name: '/client/profile/info', page: () => ClientProfileInfoPage()),
+        GetPage(
+            name: '/client/profile/update',
+            page: (() => ClientProfileUpdatePage()))
       ],
       theme: ThemeData(
           primaryColor: Colors.amber,
