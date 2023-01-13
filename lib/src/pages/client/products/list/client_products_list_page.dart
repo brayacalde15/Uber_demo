@@ -15,43 +15,8 @@ class ClientProductsListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: _bottomBar(),
-        body: Obx((() => IndexedStack(
-              index: con.indexTab.value,
-              children: [
-                RestaurantOrdersListPage(),
-                DeliveryOrdersListPage(),
-                ClientProfileInfoPage()
-              ],
-            ))));
-  }
-
-  Widget _bottomBar() {
-    return Obx((() => CustomAnimatedBottomBar(
-          containerHeight: 70,
-          backgroundColor: Colors.amber,
-          showElevation: true,
-          itemCornerRadius: 24,
-          curve: Curves.easeIn,
-          selectedIndex: con.indexTab.value,
-          onItemSelected: (index) => con.changeTab(index),
-          items: [
-            BottomNavyBarItem(
-                icon: Icon(Icons.apps),
-                title: const Text("Home"),
-                activeColor: Colors.white,
-                inactiveColor: Colors.black),
-            BottomNavyBarItem(
-                icon: Icon(Icons.delivery_dining),
-                title: const Text("Mis pedidos"),
-                activeColor: Colors.white,
-                inactiveColor: Colors.black),
-            BottomNavyBarItem(
-                icon: Icon(Icons.person),
-                title: const Text("Perfil"),
-                activeColor: Colors.white,
-                inactiveColor: Colors.black),
-          ],
-        )));
+        body: Center(
+      child: Text("CLIENT PRODUCTS LIST"),
+    ));
   }
 }

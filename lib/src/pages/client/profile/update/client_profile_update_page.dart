@@ -74,8 +74,12 @@ class ClientProfileUpdatePage extends StatelessWidget {
       child: TextField(
           controller: con.nameController,
           keyboardType: TextInputType.text,
-          decoration:
-              InputDecoration(hintText: '', prefixIcon: Icon(Icons.person))),
+          decoration: InputDecoration(
+              hintText: '',
+              prefixIcon: Icon(
+                Icons.person,
+                size: 30,
+              ))),
     );
   }
 
@@ -86,7 +90,11 @@ class ClientProfileUpdatePage extends StatelessWidget {
           controller: con.lastNameController,
           keyboardType: TextInputType.text,
           decoration: InputDecoration(
-              hintText: '', prefixIcon: Icon(Icons.person_outline))),
+              hintText: '',
+              prefixIcon: Icon(
+                Icons.person_outline,
+                size: 30,
+              ))),
     );
   }
 
@@ -98,7 +106,10 @@ class ClientProfileUpdatePage extends StatelessWidget {
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               hintText: '',
-              prefixIcon: Icon(Icons.phone),
+              prefixIcon: Icon(
+                Icons.phone,
+                size: 30,
+              ),
             )));
   }
 
@@ -107,7 +118,7 @@ class ClientProfileUpdatePage extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
       child: ElevatedButton(
-          onPressed: () => {},
+          onPressed: () => con.updateInfo(context),
           style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 15)),
           child: Text(

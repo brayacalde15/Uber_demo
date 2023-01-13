@@ -10,24 +10,11 @@ class ResponseApi {
   String? message;
   dynamic data;
 
-  ResponseApi(
-    
-    {
-      this.success,
-      this.message,
-      this.data
-    });
+  ResponseApi({this.success, this.message, this.data});
 
   factory ResponseApi.fromJson(Map<String, dynamic> json) => ResponseApi(
-      success: json["success"], 
-      message: json["message"],
-      data: json["data"]
-      );
+      success: json["success"], message: json["message"], data: json["data"]);
 
   Map<String, dynamic> toJson() =>
-      {
-        "success": success, 
-        "message": message,
-        "data": data
-      };
+      {"success": success, "message": message, "data": data};
 }
