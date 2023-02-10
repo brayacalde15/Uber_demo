@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:uber_demo_udemy/src/pages/client/products/list/client_products_list_page.dart';
 import 'package:uber_demo_udemy/src/pages/client/profile/info/client_profile_info_page.dart';
 import 'package:uber_demo_udemy/src/pages/delivery/orders/list/delivery_orders_list_page.dart';
 import 'package:uber_demo_udemy/src/pages/register/register_page.dart';
@@ -20,7 +21,7 @@ class ClientHomePage extends StatelessWidget {
         body: Obx((() => IndexedStack(
               index: con.indexTab.value,
               children: [
-                RestaurantOrdersListPage(),
+                ClientProductsListPage(),
                 DeliveryOrdersListPage(),
                 ClientProfileInfoPage()
               ],
@@ -39,7 +40,7 @@ class ClientHomePage extends StatelessWidget {
           items: [
             BottomNavyBarItem(
                 icon: Icon(Icons.apps),
-                title: const Text("Home"),
+                title: const Text("Productos "),
                 activeColor: Colors.white,
                 inactiveColor: Colors.black),
             BottomNavyBarItem(

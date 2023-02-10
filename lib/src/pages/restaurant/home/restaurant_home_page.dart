@@ -7,6 +7,7 @@ import 'package:uber_demo_udemy/src/pages/delivery/orders/list/delivery_orders_l
 import 'package:uber_demo_udemy/src/pages/register/register_page.dart';
 import 'package:uber_demo_udemy/src/pages/restaurant/categories/create/restaurant_categories_create_page.dart';
 import 'package:uber_demo_udemy/src/pages/restaurant/orders/list/restaurant_orders_list_page.dart';
+import 'package:uber_demo_udemy/src/pages/restaurant/products/create/restaurant_products_create_page.dart';
 import 'package:uber_demo_udemy/src/utils/custom_animated_bottom_bar.dart';
 
 import 'restaurant_home_controller.dart';
@@ -23,7 +24,7 @@ class RestaurantHomePage extends StatelessWidget {
               children: [
                 RestaurantOrdersListPage(),
                 RestaurantCategoriesCreatePage(),
-                DeliveryOrdersListPage(),
+                RestaurantProductsCreatePage(),
                 ClientProfileInfoPage()
               ],
             ))));
